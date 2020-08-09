@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.anurag.imagessubredditviewer"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def rx_retrofit_adapter = '2.7.1'
+    def jackson_converter_version = '2.7.1'
+    def rx_android_version = "2.1.1"
+    def rx_java_version = "2.2.10"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    //RxJava adapter for retrofit
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rx_retrofit_adapter"
+    //Jackson converter for retrofit
+    implementation "com.squareup.retrofit2:converter-jackson:$jackson_converter_version"
+    //Rx Android
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
+    //Rx Java
+    implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
+    //RecyclerView
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
